@@ -332,6 +332,7 @@
             font-size: 16px;
         }
         .double-btn-row { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
+        /* Убраны иконки из кнопок калькулятора — только текст */
         .btn-calc, .btn-order-calc {
             padding: 16px;
             border-radius: 60px;
@@ -521,10 +522,14 @@
             margin-top: 10px;
         }
         body.dark-theme .badge { background: #334155; color: #e2e8f0; }
+        .sub-checkbox-group { margin-top: 15px; }
+        .sub-title { font-size: 18px; font-weight: 700; margin: 20px 0 10px; color: #f59e0b; }
+        body.dark-theme .sub-title { color: #fbbf24; }
     </style>
 </head>
 <body class="dark-theme">
-    <button class="theme-toggle"><i class="fas fa-phone"></i></button>
+    <button class="theme-toggle" ><i class="fas fa-phone"></i>
+</i></button>
     <div class="toast" id="toast">✅ Заявка отправлена! Мы свяжемся с вами</div>
 
     <div class="marquee-wrapper">
@@ -632,28 +637,41 @@
         </div>
     </section>
 
-    <!-- КАЛЬКУЛЯТОР -->
+    <!-- КАЛЬКУЛЯТОР: убраны иконки, список взят из карточек -->
     <div class="container" id="calcSection">
         <div class="calculator-wrapper">
-            <div class="calc-header"><h3><i class="fas fa-calculator"></i> Рассчитайте стоимость заказа</h3></div>
+            <div class="calc-header"><h3>Рассчитайте стоимость заказа</h3></div>
             <div class="calc-form-grid">
-                <div class="calc-field"><label>📦 Выберите товар или услугу</label>
+                <div class="calc-field"><label>Выберите товар или услугу</label>
                     <select id="calcMaterial">
                         <option value="">—— Выберите из списка ——</option>
-                        <option value="ПГС|300|тонна">🏗️ ПГС — 300 ₽/тонна</option>
-                        <option value="Песок|300|тонна">🏖️ Песок — 300 ₽/тонна</option>
-                        <option value="Щебень|1300|тонна">🪨 Щебень — 1300 ₽/тонна</option>
-                        <option value="Чернозём|700|куб">🌱 Чернозём — 700 ₽/куб</option>
-                        <option value="Дрова колотые|2500|куб">🪵 Дрова колотые — 2500 ₽/куб</option>
-                        <option value="Газель / УАЗ|1000|час">🚚 Газель / УАЗ — 1000 ₽/час</option>
-                        <option value="Вывоз мусора|5500|рейс">🗑️ Вывоз мусора — от 5500 ₽/рейс</option>
-                        <option value="Разнорабочие|500|час">👷 Разнорабочие — от 500 ₽/час</option>
+                        <option value="ПГС|300|тонна">ПГС — 300 ₽/тонна</option>
+                        <option value="Песок|300|тонна">Песок — 300 ₽/тонна</option>
+                        <option value="Щебень|1300|тонна">Щебень — 1300 ₽/тонна</option>
+                        <option value="Гравий|800|тонна">Гравий — 800 ₽/тонна</option>
+                        <option value="Чернозём|700|куб">Чернозём — 700 ₽/куб</option>
+                        <option value="Битый кирпич|300|тонна">Битый кирпич — 300 ₽/тонна</option>
+                        <option value="Навоз|700|куб">Навоз — 700 ₽/куб</option>
+                        <option value="Перегной|700|куб">Перегной — 700 ₽/куб</option>
+                        <option value="Торф|700|куб">Торф — 700 ₽/куб</option>
+                        <option value="Дрова колотые|2500|куб">Дрова колотые — 2500 ₽/куб</option>
+                        <option value="Дрова пиленные|1000|куб">Дрова пиленные — 1000 ₽/куб</option>
+                        <option value="Горбыль|7500|тонна">Горбыль — 7500 ₽/тонна</option>
+                        <option value="Опилки|7500|тонна">Опилки — 7500 ₽/тонна</option>
+                        <option value="Уголь|7500|тонна">Уголь — 7500 ₽/тонна</option>
+                        <option value="Уголь каменный|7500|тонна">Уголь каменный — 7500 ₽/тонна</option>
+                        <option value="Газель / УАЗ|1000|час">Газель / УАЗ — 1000 ₽/час</option>
+                        <option value="ГАЗ / ЗИЛ|1500|час">ГАЗ / ЗИЛ — 1500 ₽/час</option>
+                        <option value="МАЗ / КАМАЗ|2000|час">МАЗ / КАМАЗ — 2000 ₽/час</option>
+                        <option value="Вывоз мусора|5500|рейс">Вывоз мусора — от 5500 ₽/рейс</option>
+                        <option value="Разнорабочие|500|час">Разнорабочие — от 500 ₽/час</option>
+                        <option value="Спецтехника|1000|час">Спецтехника — от 1000 ₽/час</option>
                     </select>
                 </div>
-                <div class="calc-field"><label>📊 Количество</label><input type="number" id="calcQuantity" value="1" step="0.1"></div>
-                <div class="calc-field"><label>📞 Ваш телефон *</label><input type="tel" id="calcPhone" placeholder="+7 (___) ___-__-__"></div>
-                <div class="calc-field"><label>📍 Адрес доставки</label><input type="text" id="calcAddress" placeholder="г. Пермь, ул. ..."></div>
-                <div class="double-btn-row"><button class="btn-calc" id="calcBtnNew"><i class="fas fa-chart-line"></i> Рассчитать</button><button class="btn-order-calc" id="orderBtnNew" disabled><i class="fas fa-truck"></i> Заказать</button></div>
+                <div class="calc-field"><label>Количество</label><input type="number" id="calcQuantity" value="1" step="0.1"></div>
+                <div class="calc-field"><label>Ваш телефон *</label><input type="tel" id="calcPhone" placeholder="+7 (___) ___-__-__"></div>
+                <div class="calc-field"><label>Адрес доставки</label><input type="text" id="calcAddress" placeholder="г. Пермь, ул. ..."></div>
+                <div class="double-btn-row"><button class="btn-calc" id="calcBtnNew">Рассчитать</button><button class="btn-order-calc" id="orderBtnNew" disabled>Заказать</button></div>
             </div>
         </div>
     </div>
@@ -683,13 +701,19 @@
         </div>
     </div>
 
-    <!-- Форма заявки -->
+    <!-- Форма заявки с рабочими чекбоксами + ДОПОЛНИТЕЛЬНЫЙ ЧЕКБОКС "Дополнительные услуги" -->
     <div class="container" id="orderForm">
         <div class="form-container">
             <h3 style="font-size:32px; text-align:center">Оформите заявку</h3>
             <form id="tgForm">
                 <div class="form-group"><label>📞 Телефон *</label><input type="tel" id="phone" required></div>
                 <div class="form-group"><label>🛠️ Услуги/товары</label><div id="servicesCheckboxGroup" class="services-checkbox-group"></div><div id="selectedServicesDisplay" class="selected-services" style="display:none"></div></div>
+                <!-- ДОПОЛНИТЕЛЬНЫЙ ЧЕКБОКС: Группа дополнительных услуг -->
+                <div class="form-group sub-checkbox-group">
+                    <label class="sub-title">➕ Дополнительные услуги (отметьте при необходимости)</label>
+                    <div id="extraServicesGroup" class="services-checkbox-group" style="background:#f1f5f9;"></div>
+                    <div id="selectedExtraDisplay" class="selected-services" style="display:none; background:#e0f2fe; color:#0c4a6e;"></div>
+                </div>
                 <div class="form-group"><label>📍 Адрес</label><input type="text" id="address"></div>
                 <button type="submit" class="btn-primary">📩 Отправить заявку</button>
             </form>
@@ -726,28 +750,54 @@
     <script>
         AOS.init({ duration: 800, once: false });
         
-        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleBtn = document.getElementById('themeToggle');
         if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
-        themeToggle.addEventListener('click', () => {
+        themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
             localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
         });
         
         const BOT_TOKEN = '8126103334:AAEcVfZ1slYbCqA9aG2YLQcK0cY7sK1Jz_I';
         const CHAT_ID = '727870291';
-        const serviceItems = ["ПГС","Песок","Щебень","Гравий","Чернозём","Навоз","Торф","Дрова","Уголь","Газель / УАЗ","ГАЗ / ЗИЛ","МАЗ / КАМАЗ","Вывоз мусора","Разнорабочие","Спецтехника"];
+        // Список услуг строго из карточек (включая все категории)
+        const serviceItems = [
+            "ПГС","Песок","Щебень","Гравий","Чернозём","Битый кирпич",
+            "Навоз","Перегной","Торф","Дрова колотые","Дрова пиленные","Горбыль","Опилки","Уголь","Уголь каменный",
+            "Газель / УАЗ","ГАЗ / ЗИЛ","МАЗ / КАМАЗ","Вывоз мусора","Разнорабочие","Спецтехника"
+        ];
+        
+        // Дополнительные услуги (новый чекбокс)
+        const extraServiceItems = [
+            "🚜 Погрузка экскаватором", "👷 Ручная выгрузка", "📄 Паспорт качества", "⏱ Срочная доставка за 2 часа", "📦 Упаковка в мешки"
+        ];
         
         function renderCheckboxes() {
             const container = document.getElementById('servicesCheckboxGroup');
             if(container) container.innerHTML = serviceItems.map(v => `<div class="checkbox-item"><input type="checkbox" value="${v}" class="service-checkbox"> <label>${v}</label></div>`).join('');
             document.querySelectorAll('.service-checkbox').forEach(cb => cb.addEventListener('change', updateSelectedServices));
+            
+            // Рендер дополнительных чекбоксов
+            const extraContainer = document.getElementById('extraServicesGroup');
+            if(extraContainer) {
+                extraContainer.innerHTML = extraServiceItems.map(v => `<div class="checkbox-item"><input type="checkbox" value="${v}" class="extra-checkbox"> <label>${v}</label></div>`).join('');
+                document.querySelectorAll('.extra-checkbox').forEach(cb => cb.addEventListener('change', updateSelectedExtra));
+            }
         }
+        
         function updateSelectedServices() {
             const selected = Array.from(document.querySelectorAll('.service-checkbox:checked')).map(cb => cb.value);
             const div = document.getElementById('selectedServicesDisplay');
             if(selected.length) { div.innerHTML = `✅ Выбрано: ${selected.join(', ')}`; div.style.display = 'block'; } 
             else div.style.display = 'none';
         }
+        
+        function updateSelectedExtra() {
+            const selected = Array.from(document.querySelectorAll('.extra-checkbox:checked')).map(cb => cb.value);
+            const div = document.getElementById('selectedExtraDisplay');
+            if(selected.length) { div.innerHTML = `➕ Дополнительно: ${selected.join(', ')}`; div.style.display = 'block'; } 
+            else div.style.display = 'none';
+        }
+        
         window.selectService = function(name) {
             document.querySelectorAll('.service-checkbox').forEach(cb => { if(cb.value === name) cb.checked = true; });
             updateSelectedServices();
@@ -763,15 +813,17 @@
         document.getElementById('tgForm')?.addEventListener('submit', async (e) => {
             e.preventDefault(); const phone = document.getElementById('phone').value; if(!phone) { showToast('❌ Укажите телефон'); return; }
             const selected = Array.from(document.querySelectorAll('.service-checkbox:checked')).map(cb => cb.value).join(', ');
+            const selectedExtra = Array.from(document.querySelectorAll('.extra-checkbox:checked')).map(cb => cb.value).join(', ');
             const address = document.getElementById('address').value;
-            let msg = `🆕 <b>ЗАЯВКА</b>\n📞 ${phone}\n🛠️ ${selected}\n📍 ${address}`;
-            if(await sendToTelegram(msg)) { showToast('✅ Заявка отправлена!'); document.getElementById('tgForm').reset(); document.querySelectorAll('.service-checkbox').forEach(cb => cb.checked = false); updateSelectedServices(); } else showToast('❌ Ошибка');
+            let extraText = selectedExtra ? `\n➕ Доп.услуги: ${selectedExtra}` : '';
+            let msg = `🆕 <b>ЗАЯВКА</b>\n📞 ${phone}\n🛠️ ${selected || 'не выбрано'}${extraText}\n📍 ${address || 'не указан'}`;
+            if(await sendToTelegram(msg)) { showToast('✅ Заявка отправлена!'); document.getElementById('tgForm').reset(); document.querySelectorAll('.service-checkbox').forEach(cb => cb.checked = false); document.querySelectorAll('.extra-checkbox').forEach(cb => cb.checked = false); updateSelectedServices(); updateSelectedExtra(); } else showToast('❌ Ошибка');
         });
         
         document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', function(e) { e.preventDefault(); const id = this.getAttribute('href').substring(1); const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); }));
-        renderCheckboxes(); updateSelectedServices();
+        renderCheckboxes(); updateSelectedServices(); updateSelectedExtra();
         
-        // Калькулятор
+        // КАЛЬКУЛЯТОР рабочий, иконки убраны
         const calcBtn = document.getElementById('calcBtnNew');
         const orderCalcBtn = document.getElementById('orderBtnNew');
         const materialSelect = document.getElementById('calcMaterial');
@@ -792,7 +844,7 @@
             if(!lastCalc.total) { showToast('Сначала рассчитайте'); return; }
             const phone = phoneCalc.value.trim(); if(!phone) { showToast('Введите телефон'); return; }
             const msg = `🆕 <b>ЗАКАЗ ИЗ КАЛЬКУЛЯТОРА</b>\n📦 ${lastCalc.name}\n📊 ${lastCalc.qty} ${lastCalc.unit}\n💰 ${Math.round(lastCalc.total).toLocaleString('ru-RU')} ₽\n📞 ${phone}\n📍 ${addressCalc.value || '-'}`;
-            if(await sendToTelegram(msg)) { showToast('✅ Отправлено!'); orderCalcBtn.disabled = true; calcBtn.innerHTML = '<i class="fas fa-chart-line"></i> Рассчитать'; lastCalc = {}; } 
+            if(await sendToTelegram(msg)) { showToast('✅ Отправлено!'); orderCalcBtn.disabled = true; calcBtn.innerHTML = 'Рассчитать'; lastCalc = {}; } 
             else showToast('❌ Ошибка');
         });
         phoneCalc?.addEventListener('input', () => { if(lastCalc.total > 0 && phoneCalc.value.trim().length >= 5) orderCalcBtn.disabled = false; else orderCalcBtn.disabled = true; });
