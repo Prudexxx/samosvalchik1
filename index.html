@@ -48,7 +48,8 @@
         }
         body.dark-theme .selected-services { background: #2d3748; color: #fbbf24; }
 
-        .theme-toggle {
+        /* Новая иконка телефона вместо смены темы */
+        .phone-fixed-btn {
             position: fixed;
             bottom: 30px;
             left: 30px;
@@ -66,8 +67,9 @@
             color: white;
             box-shadow: 0 4px 20px rgba(0,0,0,0.25);
             transition: transform 0.3s;
+            text-decoration: none;
         }
-        .theme-toggle:hover { transform: scale(1.1); background: #d97706; }
+        .phone-fixed-btn:hover { transform: scale(1.1); background: #d97706; }
 
         @keyframes marqueeScroll {
             0% { transform: translateX(0); }
@@ -332,7 +334,6 @@
             font-size: 16px;
         }
         .double-btn-row { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
-        /* Убраны иконки из кнопок калькулятора — только текст */
         .btn-calc, .btn-order-calc {
             padding: 16px;
             border-radius: 60px;
@@ -528,8 +529,8 @@
     </style>
 </head>
 <body class="dark-theme">
-    <button class="theme-toggle" ><i class="fas fa-phone"></i>
-</button>
+    <!-- Кнопка телефона вместо переключателя темы -->
+    <a href="tel:+73422461209" class="phone-fixed-btn"><i class="fas fa-phone"></i></a>
     <div class="toast" id="toast">✅ Заявка отправлена! Мы свяжемся с вами</div>
 
     <div class="marquee-wrapper">
@@ -708,7 +709,6 @@
             <form id="tgForm">
                 <div class="form-group"><label>📞 Телефон *</label><input type="tel" id="phone" required></div>
                 <div class="form-group"><label>🛠️ Услуги/товары</label><div id="servicesCheckboxGroup" class="services-checkbox-group"></div><div id="selectedServicesDisplay" class="selected-services" style="display:none"></div></div>
-                <!-- ДОПОЛНИТЕЛЬНЫЙ ЧЕКБОКС: Группа дополнительных услуг -->
                 <div class="form-group sub-checkbox-group">
                     <label class="sub-title">➕ Дополнительные услуги (отметьте при необходимости)</label>
                     <div id="extraServicesGroup" class="services-checkbox-group" style="background:#f1f5f9;"></div>
@@ -750,12 +750,7 @@
     <script>
         AOS.init({ duration: 800, once: false });
         
-        const themeToggleBtn = document.getElementById('themeToggle');
-        if(localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
-        themeToggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
-        });
+        // УДАЛЕНА ФУНКЦИЯ СМЕНЫ ТЕМЫ - теперь только телефонная кнопка
         
         const BOT_TOKEN = '8126103334:AAEcVfZ1slYbCqA9aG2YLQcK0cY7sK1Jz_I';
         const CHAT_ID = '727870291';
@@ -766,7 +761,6 @@
             "Газель / УАЗ","ГАЗ / ЗИЛ","МАЗ / КАМАЗ","Вывоз мусора","Разнорабочие","Спецтехника"
         ];
         
-        // Дополнительные услуги (новый чекбокс)
         const extraServiceItems = [
             "🚜 Погрузка экскаватором", "👷 Ручная выгрузка", "📄 Паспорт качества", "⏱ Срочная доставка за 2 часа", "📦 Упаковка в мешки"
         ];
@@ -776,7 +770,6 @@
             if(container) container.innerHTML = serviceItems.map(v => `<div class="checkbox-item"><input type="checkbox" value="${v}" class="service-checkbox"> <label>${v}</label></div>`).join('');
             document.querySelectorAll('.service-checkbox').forEach(cb => cb.addEventListener('change', updateSelectedServices));
             
-            // Рендер дополнительных чекбоксов
             const extraContainer = document.getElementById('extraServicesGroup');
             if(extraContainer) {
                 extraContainer.innerHTML = extraServiceItems.map(v => `<div class="checkbox-item"><input type="checkbox" value="${v}" class="extra-checkbox"> <label>${v}</label></div>`).join('');
